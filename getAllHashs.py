@@ -21,7 +21,6 @@ def parseDir(dir, isAIX=False):
 					yield h
 
 
-
 # do some clean
 for format_txt in glob.glob("format-*.txt"):
 	os.remove(format_txt)
@@ -34,29 +33,24 @@ out = open("outall.txt", "w+")
 for DIR in rootDIRs:
 	if os.path.exists(DIR) and os.path.isdir(DIR):
 		DIRname=os.path.basename(DIR)
-		# for double dir layer
+		# for double layer dir
 		for dir in glob.glob(DIR + "/*"):
+			dirname = os.path.basename(dir)
 			if os.path.isdir(dir):
-				dirname = os.path.split(DIR)[1] # 获取目录名称
-				print "++++ process dirctory:\t%s/%s " % (DIR,dir)
-				if "aix" in dir.lower():
+				print "++++ process dirctory:\t%s/%s " % (DIR,dirname)
+				if "aix" in dirname.lower():
 					isAIX = True
 				else:
 					isAIX = False
 				for l in parseDir(dir, isAIX=isAIX):
 					# l=l.replace(":","\t")
-					out.writelines(l + ":%s:%s"%(DIRname,dirname)+'\n')
-		# for 1 dir layer
-		if os.path.isfile(glob.glob(DIR + "/*")[0]):
-			print "++++ process dirctory:\t%s " % DIR
-			if "aix" in os.path.basename(DIR).lower():
-				isAIX = True
-			else:
-				isAIX = False
-			for l in parseDir(DIR, isAIX=isAIX):
-				# l=l.replace(":","\t")
-				out.writelines(l + ':%s\n'%DIRname)
-				# split every hash type to a single file
+					out.writelines(l + ":%s:%s\n"%(DIRname,dirname))
+			# for 1 dir layer
+			if os.path.isfile(dir):
+				file=dir
+				print "++++ process file:\t%s " % file
+				for h in process_line(file):
+					out.writelines(h + ':%s\n'%DIRname)
 out.close()
 
 
