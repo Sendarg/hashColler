@@ -116,13 +116,15 @@ def process_line(filename):
 			# print ip,line
 			hashtype = identify_hashes(hash)[0]
 			if "SHA-512" in hashtype:
-				hashtype = "sha512"
+				hashtype = "sha512crypt"
 			if "MD5" in hashtype:
-				hashtype = "md5"
+				hashtype = "md5crypt"
 			if "Blowfish" in hashtype:
-				hashtype = "blowfish"
+				hashtype = "bcrypt"
 			if "DES" in hashtype:
-				hashtype = "des"
+				hashtype = "descrypt"
+			if "SHA-256" in hashtype:
+				hashtype = "sha512crypt"
 			out = '%s:%s:%s:%s' % (name, hash, ip, hashtype)
 			yield out
 
