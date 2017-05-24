@@ -1,8 +1,9 @@
 # hashColler
-收集各类型OS的hash,以方便john输入
+收集各类型OS的hash（不包括Windows）,以方便进行离线密码检测
 
 
 ## 使用方法
+0. 项目纯python，0依赖库，直接使用即可
 1. python getAllHashs 目录1 目录2 
 2. 生成的结果会存储到当前目录的outall.txt，根据hash分类会分割到不同的文件，format-hashtype.txt，如下：
 
