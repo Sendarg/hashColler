@@ -1,4 +1,4 @@
-#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+#!/usr/local/bin/python
 # coding=utf-8
 __author__ = "haha@Ingeek"
 

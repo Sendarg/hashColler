@@ -161,5 +161,5 @@ def process_aix(filename, is_standard=False):
 				h = "%s:%s" % (username, h)
 		# return result
 		if len(h) > 6:
-			out = ("%s:%s:des" % (h, ip))
+			out = ("%s:%s:descrypt" % (h, ip))
 			yield out
