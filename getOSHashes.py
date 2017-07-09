@@ -60,7 +60,9 @@ if __name__ == '__main__':
 			for root, dirs, files in os.walk(DIR):
 				for f in [join(root, file) for file in files]:
 					if isPlainText(f):
-						dir=root.replace(DIR+"/","").replace("/",":")
+						d1=DIR.split("/")[-1:][0]# base dir
+						d2=root.replace(DIR,"") # details sub dir
+						dir=(d1+d2).replace("/",":") # real root dir + all sub dir
 						print "++++ Process:\t\t%s " % f
 						if "aix" in dir.lower():
 							# out.writelines(l+":dir\n" for l in process_aix(f))
